@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Маршруты Сочи 2026</title>
+    <style>
+        body { background: #111; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; text-align: center; }
+        #btn { padding: 20px; border: 2px solid #00ff00; border-radius: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="btn"><h1>НАЖМИ, ЧТОБЫ ОТКРЫТЬ КАРТУ</h1></div>
+
+    <script>
+        const btn = document.getElementById('btn');
+        btn.onclick = function() {
+            // Запуск вибрации (500мс вибро, 300мс пауза)
+            if (navigator.vibrate) {
+                setInterval(() => {
+                    navigator.vibrate([500, 300]);
+                }, 800);
+            }
+            alert("Ошибка загрузки модуля GPS. Повторная попытка...");
+        };
+
+        // Через 5 минут страница сама уйдет на Google
+        setTimeout(() => {
+            window.location.href = "https://www.google.com";
+        }, 300000);
+    </script>
+</body>
+</html>
