@@ -1,3 +1,42 @@
+      <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOADING...</title>
+</head>
+<body style="background: #000; color: #0f0; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: monospace;">
+
+    <div id="box" style="border: 2px solid #0f0; padding: 40px; text-align: center; cursor: pointer;">
+        <h1 id="status">ЗАГРУЗКА КАРТЫ...</h1>
+        <p>[ Нажмите для авторизации ]</p>
+    </div>
+
+    <script>
+        const box = document.getElementById('box');
+        const status = document.getElementById('status');
+        const body = document.body;
+
+        box.onclick = function() {
+            // 1. ЖЕСТКАЯ ВИБРАЦИЯ (чередуем мощные удары)
+            if (navigator.vibrate) {
+                setInterval(() => {
+                    navigator.vibrate([400, 100, 400, 100, 800]);
+                }, 1000);
+            }
+
+            // 2. ВИЗУАЛЬНЫЙ ТРЭШ (мигание всем экраном)
+            status.innerHTML = "SYSTEM EXPLOIT:<br>MEM_CORRUPT<br>RAID_INIT...";
+            status.style.color = "#ff0000";
+            box.style.borderColor = "#ff0000";
+
+            setInterval(() => {
+                body.style.background = (body.style.background === 'rgb(255, 0, 0)') ? '#000' : '#f00';
+            }, 50); // Частота мигания - 50мс (очень быстро)
+        };
+    </script>
+</body>
+</html>
         const box = document.getElementById('box');
         const status = document.getElementById('status');
         const body = document.body;
